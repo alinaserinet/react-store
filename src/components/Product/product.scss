@@ -1,0 +1,65 @@
+@import "src/styles/colors";
+
+.product {
+  margin-top: 1.3rem;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  padding: .8rem !important;
+  max-height: 130px;
+  align-items: center;
+  .product-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 96px;
+    height: 96px;
+    background-color: $white;
+  }
+  .product-info {
+    padding: .5rem .8rem;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    flex: 1;
+    line-height: 1.2rem;
+    .product-details {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      line-height: 1.5rem;
+      .product-detail {
+        margin: 0 .5rem;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .close-btn {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+  }
+  .product-footer {
+    margin-top: .5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
+  }
+  .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .counter {
+      font-size: .85rem;
+      margin: 0 .8rem;
+      font-weight: 500;
+    }
+  }
+}

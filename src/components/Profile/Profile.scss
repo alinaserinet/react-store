@@ -1,0 +1,24 @@
+@import "src/styles/colors";
+
+.avatar-box {
+  width: 64px;
+  height: 64px;
+  background-color: #2AA952;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile-name {
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.75rem;
+}
+.profile-email {
+  font-weight: 300;
+  font-size: 1rem;
+  color: $gray;
+}
