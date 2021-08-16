@@ -6,7 +6,7 @@ const Profile = () => {
         <Template title='My Profile'>
             <div className='profile-info'>
                 <Avatar image='/profile.jpeg'/>
-                <Information name='Maryam Maryami' email='Mary.m@gmail.com'/>
+                <Information name='User User' email='user@gmail.com'/>
             </div>
         </Template>
     );
