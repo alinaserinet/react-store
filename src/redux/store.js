@@ -1,4 +1,7 @@
-import {createStore} from "redux";
 import reducer from './reducer';
+import {configureStore} from "@reduxjs/toolkit";
 
-export default createStore(reducer);
+export default configureStore({
+    reducer,
+    devTools: process.env.NODE_ENV !== 'production',
+});

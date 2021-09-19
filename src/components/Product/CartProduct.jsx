@@ -2,9 +2,8 @@ import ProductDetail from "./ProductDetail";
 import {CloseBtn} from "../Button";
 import CartButtons from "../Button/CartButtons";
 import {useSelector} from "react-redux";
-const CartProduct = ({id}) => {
-    const {items} = useSelector(({cart}) => cart);
-    const {product, count} = items[id];
+const CartProduct = ({item}) => {
+    const {product, count} = item;
     const title = product.title.split(' ').slice(0, 4).join(' ');
     return (
         <div className='card product'>
@@ -19,7 +18,7 @@ const CartProduct = ({id}) => {
                 </div>
                 <div className='product-footer'>
                     <div>
-                        <CartButtons count={count} id={id} />
+                        <CartButtons count={count} id={product.id} />
                     </div>
                     <ProductDetail className='fw-500' component='span' value={product.price + '$'} />
                 </div>

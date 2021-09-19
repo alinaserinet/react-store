@@ -1,7 +1,7 @@
 import Button from "./Button";
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
 import {useDispatch} from "react-redux";
-import {changeCount} from "../../redux/factories";
+import {changeCount} from "../../redux/cartSlice";
 
 const CartButtons = ({id, count}) => {
     const dispatch = useDispatch();

@@ -3,8 +3,8 @@ import {useRouteMatch} from "react-router-dom";
 import {useEffect, useState} from "react";
 import http from "../services/http";
 import Button from "../components/Button";
-import {useDispatch, useSelector} from "react-redux";
-import {addToCart} from "../redux/factories";
+import {useDispatch} from "react-redux";
+import {addProduct} from "../redux/cartSlice";
 
 const Product = () => {
     const {params} = useRouteMatch();
@@ -22,7 +22,7 @@ const Product = () => {
     }, [params.id]);
 
     function handleAddToCard(e) {
-        dispatch(addToCart(product));
+        dispatch(addProduct(product));
     }
 
     return (
