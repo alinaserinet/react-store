@@ -6,6 +6,9 @@ import Categories from "./pages/Categories";
 import Favorite from "./pages/Favorite";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product";
+import UserRoute from "./components/UserRoute";
+import Login from "./pages/Login";
+import LoginRoute from "./components/LoginRoute";
 
 const App = () => {
     return (
@@ -23,9 +26,12 @@ const App = () => {
                 <Route path='/favorite'>
                     <Favorite />
                 </Route>
-                <Route path='/profile'>
+                <UserRoute path='/profile'>
                     <Profile />
-                </Route>
+                </UserRoute>
+                <LoginRoute path='/login'>
+                    <Login />
+                </LoginRoute>
                 <Route path='/products/:id'>
                     <Product />
                 </Route>

@@ -1,0 +1,28 @@
+@import "src/styles/colors";
+.input-box {
+  margin-bottom: 1.5rem;
+  position: relative;
+  .input {
+    width: 100%;
+    background-color: $white;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+    border: 0;
+    font-size: 1rem;
+    padding: 2rem 1rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  .input-label {
+    position: absolute;
+    top: 20%;
+    left: 1rem;
+    transform: translateY(-20%);
+    color: $gray;
+    font-size: .85rem;
+  }
+
+  .input:focus {
+    outline: 0;
+  }
+}
