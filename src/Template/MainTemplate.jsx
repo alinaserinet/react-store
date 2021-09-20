@@ -15,10 +15,6 @@ const MainTemplate = ({children, title}) => {
                 </div>
             </main>
             <BottomDoc/>
-            <ToastContainer
-                theme="colored"
-                position="bottom-center"
-                autoClose={3000} />
         </>
     );
 };
