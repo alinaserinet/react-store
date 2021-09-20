@@ -1,8 +1,13 @@
 import {IoMdClose} from "react-icons/io";
 
-const CloseBtn = () => {
+const CloseBtn = ({onClick, ...rest}) => {
     return (
-        <button className='button close-btn'><IoMdClose /></button>
+        <button
+            className='button close-btn'
+            onClick={onClick}
+            {...rest} >
+            <IoMdClose/>
+        </button>
     );
 };
 

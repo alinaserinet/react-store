@@ -22,6 +22,8 @@ const cartSlice = createSlice({
             reducer: (state, {payload}) => {
                 const {productId, count} = payload;
                 const productIndex = isProductExist(state.items, productId);
+                const productCount = state.items[productIndex].count;
+                if(count < 0 && productCount <= 1) return;
                 state.items[productIndex].count += count;
                 const productPrice = state.items[productIndex].product.price;
                 state.totalPrice = fixPrice(count * productPrice + state.totalPrice);
@@ -29,13 +31,20 @@ const cartSlice = createSlice({
             prepare: (productId, count) =>  {
                 return {payload: {productId, count}};
             },
+        },
+        deleteProduct(state, {payload: productId}) {
+            const productIndex = isProductExist(state.items, productId);
+            const {product, count} = state.items[productIndex];
+            state.items.splice(productIndex, 1);
+            state.totalPrice = fixPrice(state.totalPrice - product.price * count);
         }
     }
 });
 
 export const {
     addProduct,
-    changeCount
+    changeCount,
+     deleteProduct
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
