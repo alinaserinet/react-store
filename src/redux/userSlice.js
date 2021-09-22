@@ -10,20 +10,19 @@ const initialState = {
 
 export const fetchToken = createAsyncThunk(
     'user/login',
-    async ({username, password}) => {
-        try {
-            const {data} = await http.post('/auth/login', {
-                username,
-                password
-            });
-            if(data.status === 'Error') throw data;
-            return data;
+    async ({username, password}, thunkAPI) => {
+        const {data} = await http.post('/auth/login', {
+            username,
+            password
+        });
+
+        if(data.status === 'Error') {
+            toast.error(data.msg);
+            return thunkAPI.rejectWithValue(data);
         }
-        catch (err) {
-            throw {
-                message: err.msg,
-            };
-        }
+
+        toast.success('Welcome, login success!');
+        return data;
     }
 )
 
@@ -33,13 +32,11 @@ const userSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchToken.fulfilled, (state, {payload}) => {
-            toast.success('Welcome, login success!');
             state.token = payload.token;
             state.error = null;
         });
-        builder.addCase(fetchToken.rejected, (state, {error}) => {
-            state.error = error;
-            toast.error(error.message);
+        builder.addCase(fetchToken.rejected, (state, {payload}) => {
+            state.error = payload;
         });
     }
 });
