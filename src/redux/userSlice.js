@@ -5,7 +5,8 @@ import {toast} from "react-toastify";
 const initialState = {
     user: null,
     token: null,
-    error: null
+    error: null,
+    status: 'init'
 };
 
 export const fetchToken = createAsyncThunk(
@@ -31,11 +32,16 @@ const userSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
+        builder.addCase(fetchToken.pending, (state, {payload}) => {
+            state.status = 'loading';
+        });
         builder.addCase(fetchToken.fulfilled, (state, {payload}) => {
+            state.status = 'loaded';
             state.token = payload.token;
             state.error = null;
         });
         builder.addCase(fetchToken.rejected, (state, {payload}) => {
+            state.status = 'error';
             state.error = payload;
         });
     }
