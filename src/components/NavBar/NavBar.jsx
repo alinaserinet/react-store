@@ -1,9 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {IoIosArrowBack, IoMdSearch} from 'react-icons/io';
-import {useHistory} from "react-router-dom/cjs/react-router-dom";
 const NavBar = () => {
-    const location = useHistory();
     return (
         <nav className='nav-bar'>
             <div className='container'>

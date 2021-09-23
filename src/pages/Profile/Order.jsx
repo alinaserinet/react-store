@@ -1,11 +1,8 @@
-import React from 'react';
-import {OrderDetail, OrderItem, OrderStatus} from "../../components/Orders";
+import {OrderDetail, OrderStatus} from "../../components/Orders";
 import Template from "../../Template/MainTemplate";
-import {useRouteMatch} from "react-router-dom";
 import Product from "../../components/Product";
 
 const Order = () => {
-    const {params} = useRouteMatch();
 
     return (
         <Template >

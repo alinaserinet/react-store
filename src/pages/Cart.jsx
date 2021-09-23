@@ -7,7 +7,13 @@ const Cart = () => {
     const {items, totalPrice} = useSelector(({cart}) => cart);
     return (
         <Template title='Cart'>
-            {items.map(item => <Product item={item} id={item.productId}/>)}
+            {items.map(item =>
+                <Product
+                    item={item}
+                    id={item.productId}
+                    key={item.productId}
+                />
+            )}
             <div className="cart-footer">
                 <ProductDetail value={totalPrice + '$'} title='Total Amount' component='span' className='fw-500'/>
             </div>

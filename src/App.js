@@ -12,13 +12,16 @@ import LoginRoute from "./components/LoginRoute";
 import {useDispatch} from "react-redux";
 import {setToken} from "./redux/userSlice";
 import 'normalize.css/normalize.css';
+import {setCart} from "./redux/cartSlice";
 
 const App = () => {
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
         const token = localStorage.getItem('token');
+        const cart = JSON.parse(localStorage.getItem('cart'));
         token && dispatch(setToken(token));
+        cart && dispatch(setCart(cart));
     }, [dispatch]);
 
     return (

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useRouteMatch} from "react-router-dom/cjs/react-router-dom";
 
 const TabItem = ({title, to, icon: Icon}) => {

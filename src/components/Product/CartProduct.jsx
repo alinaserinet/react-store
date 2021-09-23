@@ -1,7 +1,7 @@
 import ProductDetail from "./ProductDetail";
 import {CloseBtn} from "../Button";
 import CartButtons from "../Button/CartButtons";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {deleteProduct} from "../../redux/cartSlice";
 
 const CartProduct = ({item}) => {

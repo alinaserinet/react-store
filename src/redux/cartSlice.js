@@ -12,7 +12,7 @@ const cartSlice = createSlice({
         addProduct(state, {payload: product}) {
             const productIndex = isProductExist(state.items, product.id);
             state.totalPrice = fixPrice(product.price + state.totalPrice);
-            if(productIndex !== -1) {
+            if (productIndex !== -1) {
                 state.items[productIndex].count += 1;
                 return;
             }
@@ -23,12 +23,12 @@ const cartSlice = createSlice({
                 const {productId, count} = payload;
                 const productIndex = isProductExist(state.items, productId);
                 const productCount = state.items[productIndex].count;
-                if(count < 0 && productCount <= 1) return;
+                if (count < 0 && productCount <= 1) return;
                 state.items[productIndex].count += count;
                 const productPrice = state.items[productIndex].product.price;
                 state.totalPrice = fixPrice(count * productPrice + state.totalPrice);
             },
-            prepare: (productId, count) =>  {
+            prepare: (productId, count) => {
                 return {payload: {productId, count}};
             },
         },
@@ -37,6 +37,10 @@ const cartSlice = createSlice({
             const {product, count} = state.items[productIndex];
             state.items.splice(productIndex, 1);
             state.totalPrice = fixPrice(state.totalPrice - product.price * count);
+        },
+        setCart(state, {payload: cart}) {
+            state.items = cart.items;
+            state.totalPrice = cart.totalPrice;
         }
     }
 });
@@ -44,7 +48,8 @@ const cartSlice = createSlice({
 export const {
     addProduct,
     changeCount,
-     deleteProduct
+    deleteProduct,
+    setCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
