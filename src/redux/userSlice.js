@@ -23,14 +23,19 @@ export const fetchToken = createAsyncThunk(
         }
 
         toast.success('Welcome, login success!');
+        localStorage.setItem('token', data.token);
         return data;
     }
-)
+);
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        setToken(state, {payload}) {
+            state.token = payload;
+        }
+    },
     extraReducers: builder => {
         builder.addCase(fetchToken.pending, (state, {payload}) => {
             state.status = 'loading';
@@ -47,6 +52,6 @@ const userSlice = createSlice({
     }
 });
 
-export const {} = userSlice.actions;
+export const {setToken} = userSlice.actions;
 
 export default userSlice.reducer;

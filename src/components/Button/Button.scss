@@ -59,6 +59,8 @@
 }
 
 button[disabled], button:disabled {
-  cursor: not-allowed;
+  cursor: default;
+  background-color: darken($primary, 10%) !important;
+  border-color: darken($primary, 10%) !important;
 }
 

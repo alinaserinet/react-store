@@ -6,7 +6,7 @@ import Product from "../../components/Product";
 
 const Order = () => {
     const {params} = useRouteMatch();
-    console.log(params.id);
+
     return (
         <Template >
             <div className='order-box'>
