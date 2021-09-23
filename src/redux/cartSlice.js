@@ -49,7 +49,7 @@ export const {
 
 export default cartSlice.reducer;
 
-function isProductExist(items, id) {
+export function isProductExist(items, id) {
     return items.findIndex(({productId}) => productId === id);
 }
 

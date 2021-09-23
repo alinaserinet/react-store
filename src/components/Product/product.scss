@@ -52,14 +52,21 @@
     flex-flow: row wrap;
     align-items: center;
   }
-  .button-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .counter {
-      font-size: .85rem;
-      margin: 0 .8rem;
-      font-weight: 500;
-    }
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .counter {
+    font-size: .85rem;
+    margin: 0 .8rem;
+    font-weight: 500;
   }
+}
+
+.product-loader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

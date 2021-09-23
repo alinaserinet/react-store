@@ -1,16 +1,14 @@
-import Template from "../Template/MainTemplate";
+import Template from "../../Template/MainTemplate";
 import {useRouteMatch} from "react-router-dom";
 import {useEffect, useState} from "react";
-import http from "../services/http";
-import Button from "../components/Button";
-import {useDispatch} from "react-redux";
-import {addProduct} from "../redux/cartSlice";
+import http from "../../services/http";
+import Loader from "./Loader";
+import {AddToCart} from "../../components/Product";
 
 const Product = () => {
     const {params} = useRouteMatch();
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         setLoading(true);
@@ -21,13 +19,9 @@ const Product = () => {
             });
     }, [params.id]);
 
-    function handleAddToCard(e) {
-        dispatch(addProduct(product));
-    }
-
     return (
-        <Template >
-            <div className='product-page'>
+        <Template>
+            {loading ? <Loader /> : <div className='product-page'>
                 <div className='product-image__box'>
                     <img src={product.image} alt={product.title} width='100%'/>
                 </div>
@@ -36,11 +30,9 @@ const Product = () => {
                     <span className='gray'>{product.category}</span>
                 </div>
                 <div>
-                    <Button
-                        className='button primary block'
-                        onClick={handleAddToCard} >Add to card</Button>
+                    <AddToCart product={product} />
                 </div>
-            </div>
+            </div>}
         </Template>
     );
 };
