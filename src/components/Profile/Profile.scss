@@ -22,3 +22,25 @@
   font-size: 1rem;
   color: $gray;
 }
+
+.menu-item {
+  padding: 1.1rem .95rem;
+  border-top: 1px solid rgba($gray, 0.06);
+  border-bottom: 1px solid rgba($gray, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .menu-item-title {
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: .8rem;
+  }
+  .menu-item-description {
+    color: $gray;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+  .icon {
+    color: $gray;
+  }
+}
