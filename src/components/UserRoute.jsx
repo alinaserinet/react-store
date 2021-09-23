@@ -6,6 +6,7 @@ const UserRoute = ({path, children, ...rest}) => {
     const location = useLocation();
 
     if(!token) {
+
         return <Redirect to={{
             pathname: '/login',
             state: {

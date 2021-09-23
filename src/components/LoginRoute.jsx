@@ -1,10 +1,12 @@
-import {Redirect, Route, useLocation} from "react-router-dom";
+import {Redirect, Route, useHistory, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 const LoginRoute = ({path, children, ...rest}) => {
     const token = useSelector(({user}) => user.token);
+    const {state} = useLocation();
+    const redirectPath = state?.referrer || '/profile';
     if(token) {
-        return <Redirect to='/profile' />
+        return <Redirect to={redirectPath} />
     }
 
     return (
