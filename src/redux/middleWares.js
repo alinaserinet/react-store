@@ -4,6 +4,6 @@ export const syncLocalStorageCart = store => next => action => {
 
     if(typePrefix === 'cart') {
         const {cart} = store.getState();
-        localStorage.setItem('cart', JSON.stringify(cart.items));
+        localStorage.setItem('cartItems', JSON.stringify(cart.items));
     }
 }

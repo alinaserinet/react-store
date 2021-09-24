@@ -19,7 +19,7 @@ const App = () => {
 
     useLayoutEffect(() => {
         const token = localStorage.getItem('token');
-        const cartItems = JSON.parse(localStorage.getItem('cart'));
+        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
         token && dispatch(setToken(token));
         cartItems && dispatch(setCartItems(cartItems));
     }, [dispatch]);
