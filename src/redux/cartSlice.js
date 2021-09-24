@@ -2,21 +2,20 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     items: [],
-    totalPrice: 0,
+    prices: {}
 }
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addProduct(state, {payload: product}) {
-            const productIndex = isProductExist(state.items, product.id);
-            state.totalPrice = fixPrice(product.price + state.totalPrice);
+        addProduct(state, {payload: productId}) {
+            const productIndex = isProductExist(state.items, productId);
             if (productIndex !== -1) {
                 state.items[productIndex].count += 1;
                 return;
             }
-            state.items.push({productId: product.id, product, count: 1});
+            state.items.push({productId, count: 1});
         },
         changeCount: {
             reducer: (state, {payload}) => {
@@ -25,8 +24,6 @@ const cartSlice = createSlice({
                 const productCount = state.items[productIndex].count;
                 if (count < 0 && productCount <= 1) return;
                 state.items[productIndex].count += count;
-                const productPrice = state.items[productIndex].product.price;
-                state.totalPrice = fixPrice(count * productPrice + state.totalPrice);
             },
             prepare: (productId, count) => {
                 return {payload: {productId, count}};
@@ -34,13 +31,21 @@ const cartSlice = createSlice({
         },
         deleteProduct(state, {payload: productId}) {
             const productIndex = isProductExist(state.items, productId);
-            const {product, count} = state.items[productIndex];
             state.items.splice(productIndex, 1);
-            state.totalPrice = fixPrice(state.totalPrice - product.price * count);
         },
-        setCart(state, {payload: cart}) {
-            state.items = cart.items;
-            state.totalPrice = cart.totalPrice;
+        setCartItems(state, {payload: items}) {
+            state.items = items;
+        },
+        setPrice: {
+            reducer(state, {payload}) {
+                const {productId, price} = payload;
+                state.prices[productId] = price;
+            },
+            prepare(productId, price) {
+                return {
+                    payload: {productId, price}
+                }
+            }
         }
     }
 });
@@ -49,7 +54,8 @@ export const {
     addProduct,
     changeCount,
     deleteProduct,
-    setCart
+    setCartItems,
+    setPrice
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
@@ -58,6 +64,6 @@ export function isProductExist(items, id) {
     return items.findIndex(({productId}) => productId === id);
 }
 
-function fixPrice(price) {
+export function fixPrice(price) {
     return parseFloat((price).toFixed(2));
 }

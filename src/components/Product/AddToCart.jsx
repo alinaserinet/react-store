@@ -10,7 +10,7 @@ const AddToCart = ({product}) => {
     const cartIndex = isProductExist(cartItems, product.id);
 
     function handleAddToCard(e) {
-        dispatch(addProduct(product));
+        dispatch(addProduct(product.id));
     }
 
     if (cartIndex === -1) {
