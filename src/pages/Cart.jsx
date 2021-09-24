@@ -5,10 +5,15 @@ import {useSelector} from "react-redux";
 import {fixPrice} from "../redux/cartSlice";
 
 const Cart = () => {
-    const {items, prices} = useSelector(({cart}) => cart);
+    const {items, products} = useSelector(({cart, product}) => {
+        return {
+            items: cart.items,
+            products: product.items,
+        }
+    });
 
     const totalPrice = items.reduce((prevAmount, item) => {
-        const productPrice = prices[item.productId];
+        const productPrice = products[item.productId]?.price;
         return fixPrice(productPrice * item.count + prevAmount) || 0;
     }, 0);
 

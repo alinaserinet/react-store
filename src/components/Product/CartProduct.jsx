@@ -1,25 +1,32 @@
 import ProductDetail from "./ProductDetail";
 import {CloseBtn} from "../Button";
 import CartButtons from "../Button/CartButtons";
-import {useDispatch} from "react-redux";
-import {deleteProduct, setPrice} from "../../redux/cartSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteProduct} from "../../redux/cartSlice";
 import {useEffect, useState} from "react";
 import http from "../../services/http";
 import {CartProductSkeleton} from "./Skeleton";
+import {addProduct} from "../../redux/productSlice";
 
-const CartProduct = ({item, setTotalPrice}) => {
+const CartProduct = ({item}) => {
     const {productId, count} = item;
-    const [product, setProduct] = useState(null);
+    const productSaved = useSelector(({product}) => product.items[productId]);
+    const [product, setProduct] = useState(productSaved);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+
     
     useEffect(() => {
+        if(productSaved) {
+            setLoading(false);
+            return;
+        }
         setLoading(true);
         http.get(`/products/${productId}`)
             .then(({data}) => {
                 setProduct(data);
                 setLoading(false);
-                dispatch(setPrice(productId, data.price));
+                dispatch(addProduct(data));
             });
     }, [dispatch, productId]);
 
