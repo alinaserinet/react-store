@@ -19,14 +19,18 @@ const Cart = () => {
 
     return (
         <Template title='Cart'>
-            {items.map(item =>
-                <Product
-                    item={item}
-                    key={item.productId}
-                />
-            )}
-            <div className="cart-footer">
-                <ProductDetail value={totalPrice + '$'} title='Total Amount' component='span' className='fw-500'/>
+            <div className='cart-box'>
+                <div className='cart-items'>
+                    {items.map(item =>
+                        <Product
+                            item={item}
+                            key={item.productId}
+                        />
+                    )}
+                </div>
+                <div className="cart-details">
+                    <ProductDetail value={totalPrice + '$'} title='Total Amount' component='span' className='fw-500'/>
+                </div>
             </div>
         </Template>
     );
